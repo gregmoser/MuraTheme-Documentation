@@ -1,3 +1,5 @@
+<cfset $.getContentRenderer().showAdminToolBar = true />
+
 <cfoutput>
 	<html>
 		<head>
