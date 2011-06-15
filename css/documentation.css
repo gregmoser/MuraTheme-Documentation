@@ -1,0 +1,16 @@
+*						{font-family:Arial, Helvetica, sans-serif;}
+frame.left				{border-right:1px solid #cccccc;}
+body.leftBody			{background-color:#efefef; padding:30px 10px 60px 10px;}
+body.rightBody			{padding:30px 10px 60px 10px;}
+/* Left Nav */
+div.leftNav				{margin-top:10px; font-size:13px;}
+div.leftNav	ul			{list-style:none; padding-left:0px;}
+div.leftNav	ul li ul	{display:none; margin-left:16px;}
+div.leftNav	a			{display:block; text-decoration:none; padding:2px 0px 2px 0px;}
+div.leftNav	img			{float:left;position:relative; margin:5px 5px 0px 0px;}
+/* End Left Nav */
+
+/* Right Side Content */
+h1						{border-bottom: 2px solid #cccccc; padding-bottom:5px;}
+
+div.content 			{margin-top:40px;}
