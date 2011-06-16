@@ -26,6 +26,7 @@
 		<cfset var nest=''>
 		<cfset var subnav=false>
 		<cfset var theNav="">
+		<cfset var hasNest=false>
 		
 		<cfif not isQuery(rsSection)>
 			<cfset rsSection=application.contentGateway.getKids('00000000000000000000000000000000000',event.getValue('siteID'),arguments.contentid,arguments.type,arguments.today,50,'',0,arguments.sortBy,arguments.sortDirection,arguments.categoryID,arguments.relatedID)>
@@ -60,12 +61,16 @@
 							<cfset itemClass=listAppend(itemClass,"current"," ")>
 						</cfif>
 						
-						<cfset link=addDocumentationLink(rsSection.type,rsSection.filename,rsSection.menutitle,'right',rsSection.targetParams,rsSection.contentid,event.getValue('siteID'),arguments.querystring,arguments.context,arguments.stub)>
+						<cfif subnav and find("<li",nest)>
+							<cfset hasNest = true />
+						</cfif> 
+						
+						<cfset link=addDocumentationLink(rsSection.type,rsSection.filename,rsSection.menutitle,'right',rsSection.targetParams,rsSection.contentid,event.getValue('siteID'),arguments.querystring,arguments.context,arguments.stub,hasNest)>
 						
 					</cfsilent>
 					<li<cfif len(itemClass)> class="#itemClass#"</cfif>>
-						<cfif subnav and find("<li",nest)><img src="#$.siteConfig('themeAssetPath')#/images/plus.gif" class="navexpander" /><cfelse><img src="#$.siteConfig('themeAssetPath')#/images/blank.gif" /></cfif>#link#
-						<cfif subnav and find("<li",nest)>#nest#<cfelse></cfif>
+						<cfif hasNest><img src="#$.siteConfig('themeAssetPath')#/images/plus.gif" class="navexpander" /><cfelse><img src="#$.siteConfig('themeAssetPath')#/images/arrow.gif" /></cfif>#link#
+						<cfif hasNest>#nest#<cfelse></cfif>
 					</li>
 				<cfelse>
 					<cfset adjust=adjust-1>
@@ -88,13 +93,19 @@
 		<cfargument name="querystring" type="string" required="true" default="">
 		<cfargument name="context" type="string" required="true" default="#application.configBean.getContext()#">
 		<cfargument name="stub" type="string" required="true" default="#application.configBean.getStub()#">
+		
+		<cfargument name="hasNest" type="boolean" required="true" default="false" />
+		
 		<cfargument name="indexFile" type="string" required="true" default="">
 		<cfargument name="showMeta" type="string" required="true" default="0">
 		<cfargument name="showCurrent" type="string" required="true" default="1">
 		<cfargument name="class" type="string" required="true" default="">
 		<cfargument name="complete" type="boolean" required="true" default="false">
 		<cfargument name="id" type="string" required="true" default="">
-
+		
+		<cfif hasNest>
+			<cfset arguments.class = "navexpander" />
+		</cfif>
 					
 		<cfset var link ="">
 		<cfset var href ="">

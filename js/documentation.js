@@ -1,36 +1,32 @@
 
 jQuery(document).ready(function () {
-	bindFunctions();
-});
-
-function bindFunctions() {
-	jQuery('.navexpander').click(function() {
-		jQuery(this).addClass('navcontractor');
-		jQuery(this).siblings('.navexpander').addClass('navcontractor');
-		jQuery(this).removeClass('navexpander');
-		jQuery(this).siblings('.navexpander').removeClass('navexpander');
-		if(jQuery(this).is('img')) {
-			jQuery(this).attr('src', minusImage);	
-		} else {
-			jQuery(this).siblings('img').attr('src', minusImage);	
+	
+	jQuery('div.leftNav img').click(function() {
+		if(jQuery(this).hasClass('navexpander')) {
+			jQuery(this).removeClass('navexpander');
+			jQuery(this).addClass('navcontractor');
+			jQuery(this).siblings('a').removeClass('navexpander');
+			jQuery(this).siblings('a').addClass('navcontractor');
+			jQuery(this).attr('src', minusImage);
+			jQuery(this).siblings('ul').show();
+		} else if(jQuery(this).hasClass('navcontractor')) {
+			jQuery(this).removeClass('navcontractor');
+			jQuery(this).addClass('navexpander');
+			jQuery(this).siblings('a').removeClass('navcontractor');
+			jQuery(this).siblings('a').addClass('navexpander');
+			jQuery(this).attr('src', plusImage);
+			jQuery(this).siblings('ul').hide();
 		}
-		jQuery(this).siblings('ul').show();
-		
-		bindFunctions();
 	});
 	
-	jQuery('.navcontractor').click(function() {
-		jQuery(this).addClass('navexpander');
-		jQuery(this).siblings('.navcontractor').addClass('navexpander');
-		jQuery(this).removeClass('navcontractor');
-		jQuery(this).siblings('.navcontractor').removeClass('navcontractor');
-		if(jQuery(this).is('img')) {
-			jQuery(this).attr('src', plusImage);	
-		} else {
-			jQuery(this).siblings('img').attr('src', plusImage);	
+	jQuery('div.leftNav a').click(function() {
+		if(jQuery(this).hasClass('navexpander')) {
+			jQuery(this).removeClass('navexpander');
+			jQuery(this).addClass('navcontractor');
+			jQuery(this).siblings('img').removeClass('navexpander');
+			jQuery(this).siblings('img').addClass('navcontractor');
+			jQuery(this).siblings('img').attr('src', minusImage);
+			jQuery(this).siblings('ul').show();
 		}
-		jQuery(this).siblings('ul').hide();
-		
-		bindFunctions();
 	});
-}
+});
