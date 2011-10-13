@@ -1,7 +1,8 @@
-
 jQuery(document).ready(function () {
 	
-	jQuery('div.leftNav img').click(function() {
+	jQuery('li.current > img.navexpander').attr('src', minusImage);
+	
+	jQuery('div#leftNav img').click(function() {
 		if(jQuery(this).hasClass('navexpander')) {
 			jQuery(this).removeClass('navexpander');
 			jQuery(this).addClass('navcontractor');
@@ -19,7 +20,7 @@ jQuery(document).ready(function () {
 		}
 	});
 	
-	jQuery('div.leftNav a').click(function() {
+	jQuery('div#leftNav a').click(function() {
 		if(jQuery(this).hasClass('navexpander')) {
 			jQuery(this).removeClass('navexpander');
 			jQuery(this).addClass('navcontractor');
@@ -29,4 +30,5 @@ jQuery(document).ready(function () {
 			jQuery(this).siblings('ul').show();
 		}
 	});
+	
 });

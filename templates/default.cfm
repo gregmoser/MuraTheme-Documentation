@@ -1,11 +1,17 @@
-<cfif $.content('contentID') eq '00000000000000000000000000000000001'> 
-	<cfif isDefined('url.left')>
-		<cfinclude template="inc/left.cfm" />
-	<cfelseif isDefined('url.right')>
-		<cfinclude template="defaultRight.cfm" />
-	<cfelse>
-		<cfinclude template="inc/frameset.cfm" />
-	</cfif>
-<cfelse>
-	<cfinclude template="defaultRight.cfm" />
-</cfif>
+<cfoutput>
+	<html>
+		<head>
+			<cfinclude template="inc/html_head.cfm" />
+		</head>
+	</html>
+	<body>
+		<div id="leftNav">
+			<cfinclude template="inc/left.cfm" />
+		</div>
+		<div id="rightContent">
+			<div class="content">
+				#$.dspBody(body=$.content('body'), pagetitle=$.content('title'), crumblist=0, showMetaImage=0)#
+			</div>
+		</div>
+	</body>
+</cfoutput>
